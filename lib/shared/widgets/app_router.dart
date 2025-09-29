@@ -6,8 +6,12 @@ import '../../features/auth/screens/login_screen.dart';
 import '../../features/auth/screens/register_screen.dart';
 import '../../features/student/screens/student_dashboard.dart';
 import '../../features/mentor/screens/mentor_dashboard.dart';
-import '../../features/chat/screens/chat_list_screen.dart';
-import '../../features/chat/screens/chat_screen.dart';
+import '../../features/chat/screens/chat_screen.dart' as chat_screens;
+import '../../features/quiz/screens/quiz_screen.dart';
+import '../../features/quiz/screens/quiz_list_screen.dart';
+import '../../features/student/screens/results_screen.dart';
+import '../../features/mentor/screens/analytics_screen.dart';
+import '../../features/mentor/screens/students_screen.dart';
 import '../../features/shared/screens/splash_screen.dart';
 import '../../features/shared/screens/error_screen.dart';
 
@@ -74,12 +78,19 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const StudentProfileScreen(),
           ),
           GoRoute(
-            path: 'quiz',
-            builder: (context, state) => const StudentQuizScreen(),
+            path: 'quizzes',
+            builder: (context, state) => const QuizListScreen(),
+          ),
+          GoRoute(
+            path: 'quiz/:quizId',
+            builder: (context, state) {
+              final quizId = state.pathParameters['quizId']!;
+              return QuizScreen(quizId: quizId);
+            },
           ),
           GoRoute(
             path: 'results',
-            builder: (context, state) => const StudentResultsScreen(),
+            builder: (context, state) => const ResultsScreen(),
           ),
           GoRoute(
             path: 'mentor',
@@ -95,11 +106,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         routes: [
           GoRoute(
             path: 'students',
-            builder: (context, state) => const MentorStudentsScreen(),
+            builder: (context, state) => const StudentsScreen(),
           ),
           GoRoute(
             path: 'analytics',
-            builder: (context, state) => const MentorAnalyticsScreen(),
+            builder: (context, state) => const AnalyticsScreen(),
           ),
           GoRoute(
             path: 'sessions',
@@ -112,13 +123,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       // Chat Routes
       GoRoute(
         path: '/chat',
-        builder: (context, state) => const ChatListScreen(),
+        builder: (context, state) => const chat_screens.ChatListScreen(),
         routes: [
           GoRoute(
             path: 'room/:roomId',
             builder: (context, state) {
               final roomId = state.pathParameters['roomId']!;
-              return ChatScreen(roomId: roomId);
+              return chat_screens.ChatScreen(roomId: roomId);
             },
           ),
         ],

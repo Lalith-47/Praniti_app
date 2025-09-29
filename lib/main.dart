@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'core/constants/app_constants.dart';
+import 'core/network/api_client.dart';
+import 'core/database/cosmos_db_service.dart';
 import 'shared/widgets/app_router.dart';
 import 'shared/widgets/theme/app_theme.dart';
 
@@ -10,6 +12,14 @@ void main() async {
   
   // Initialize Hive for local storage
   await Hive.initFlutter();
+  
+  // Initialize API Client
+  final apiClient = ApiClient();
+  apiClient.initialize();
+  
+  // Initialize Cosmos DB Service
+  final cosmosDbService = CosmosDbService();
+  cosmosDbService.initialize();
   
   runApp(
     const ProviderScope(

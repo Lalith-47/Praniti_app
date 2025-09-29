@@ -3,6 +3,14 @@ class AppConstants {
   static const String baseUrl = 'http://localhost:5000/api';
   static const String socketUrl = 'http://localhost:5000';
   
+  // Azure Cosmos DB Configuration
+  static const String cosmosDbConnectionString = 'AccountEndpoint=https://praniti-db.documents.azure.com:443/;AccountKey=your-account-key-here;';
+  static const String cosmosDbDatabaseName = 'PranitiDB';
+  static const String cosmosDbContainerUsers = 'Users';
+  static const String cosmosDbContainerQuizzes = 'Quizzes';
+  static const String cosmosDbContainerMessages = 'Messages';
+  static const String cosmosDbContainerSessions = 'Sessions';
+  
   // App Information
   static const String appName = 'Praniti';
   static const String appVersion = '1.0.0';

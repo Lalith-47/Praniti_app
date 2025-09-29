@@ -134,7 +134,7 @@ class _StudentDashboardState extends ConsumerState<StudentDashboard> {
                 icon: Icons.quiz,
                 title: 'Take Quiz',
                 subtitle: 'Assess your skills',
-                onTap: () => context.go('/student/quiz'),
+                onTap: () => context.go('/student/quizzes'),
                 color: Colors.blue,
               ),
               _buildActionCard(
